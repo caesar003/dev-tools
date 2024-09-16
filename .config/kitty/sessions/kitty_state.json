@@ -1,0 +1,39 @@
+[
+  {
+    "title": "1. phb",
+    "cwd": "/home/caesar/phb"
+  },
+  {
+    "title": "2. container-fe",
+    "cwd": "/home/caesar/projects/wms/Container-Frontend"
+  },
+  {
+    "title": "3. dataMaster-fe",
+    "cwd": "/home/caesar/projects/wms/DataMaster-Frontend"
+  },
+  {
+    "title": "4. orderService-fe",
+    "cwd": "/home/caesar/projects/wms/OrderService-Frontend"
+  },
+  {
+    "title": "5. pms-fe",
+    "cwd": "/home/caesar/projects/wms/PMS-Frontend"
+  },
+  {
+    "title": "6. credentials",
+    "cwd": "/home/caesar/credentials"
+  },
+  {
+    "title": "7. dotconfig",
+    "cwd": "/home/caesar/.bin"
+  },
+  {
+    "title": "8. music",
+    "cwd": "/home/caesar"
+  },
+  {
+    "title": "9. others",
+    "cwd": "/home/caesar"
+  }
+
+]
