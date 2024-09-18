@@ -3,7 +3,7 @@
 
 -- if true then return {} end
 return {
-  {
-    "leafgarland/typescript-vim",
-  }
+	{
+		"leafgarland/typescript-vim",
+	},
 }

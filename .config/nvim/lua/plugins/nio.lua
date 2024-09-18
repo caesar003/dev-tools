@@ -1,1 +1,3 @@
-return { "nvim-neotest/nvim-nio" }
+return {
+	"nvim-neotest/nvim-nio",
+}

@@ -11,7 +11,7 @@ local map = vim.api.nvim_set_keymap
 _g.mapleader = " "
 _g.maplocalleader = "\\"
 
-comm "syntax on"
+comm("syntax on")
 
 opts.mouse = ""
 opts.autoread = true
@@ -25,8 +25,8 @@ opts.relativenumber = true
 opts.cursorcolumn = true
 opts.cursorline = true
 opts.conceallevel = 2
-opts.path:append "**"
-opts.wildignore:append "*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/"
+opts.path:append("**")
+opts.wildignore:append("*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/")
 opts.hidden = true
 opts.timeout = true
 opts.timeoutlen = 500
@@ -58,10 +58,10 @@ opts.belloff = "all"
 opts.visualbell = true
 opts.scrolloff = 8
 
-comm 'let &t_SI = "\\e[5 q"'
-comm 'let &t_EI = "\\e[1 q"'
-comm "set t_ZH=^[[3m"
-comm "set t_ZR=^[[23m"
+comm('let &t_SI = "\\e[5 q"')
+comm('let &t_EI = "\\e[1 q"')
+comm("set t_ZH=^[[3m")
+comm("set t_ZR=^[[23m")
 
 _g.loaded_perl_provider = 0
 _g.loaded_ruby_provider = 0
@@ -69,14 +69,14 @@ _g.loaded_ruby_provider = 0
 opts.tags = "./tags,tags;$HOME"
 _g.disable_bg = 1
 
-
 _g.lazyvim_php_lsp = "intelephense"
 
-
-if fun.has "unnamedplus" == 1 then opts.clipboard = "unnamed,unnamedplus" end
-if fun.has "termguicolors" == 1 then
-  comm 'let &t_ZH="\\e[3m"'
-  comm 'let &t_ZR="\\e[23m"'
+if fun.has("unnamedplus") == 1 then
+	opts.clipboard = "unnamed,unnamedplus"
+end
+if fun.has("termguicolors") == 1 then
+	comm('let &t_ZH="\\e[3m"')
+	comm('let &t_ZR="\\e[23m"')
 end
 
 autocmd("FileType", { pattern = "javascript", command = "setlocal foldmethod=syntax" })
@@ -90,4 +90,18 @@ autocmd("FileType", { pattern = "json", command = "setlocal foldmethod=syntax" }
 autocmd("FileType", { pattern = "sh", command = "setlocal foldmethod=syntax" })
 autocmd("FileType", { pattern = "lua", command = "setlocal foldmethod=indent" })
 
-autocmd({ "BufRead", "BufNewFile" }, { pattern = {".env", ".env.*"}, command = "set filetype=sh" })
+autocmd({ "BufRead", "BufNewFile" }, { pattern = { ".env", ".env.*" }, command = "set filetype=sh" })
+
+autocmd("BufWritePre", {
+	pattern = { "*.php", "*.blade.php", "*.lua", "*.sh", "*.bash" },
+	callback = function()
+		vim.lsp.buf.format({ async = false })
+	end,
+})
+
+autocmd("BufWritePre", {
+	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.json", "*.css", "*.html", "*.json" },
+	callback = function()
+		vim.cmd("Prettier")
+	end,
+})

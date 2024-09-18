@@ -1,4 +1,3 @@
 return {
-  { "preservim/vim-markdown" },
+	{ "preservim/vim-markdown" },
 }
-

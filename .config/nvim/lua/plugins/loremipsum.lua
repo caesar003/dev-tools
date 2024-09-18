@@ -1,3 +1,3 @@
 return {
-  { "vim-scripts/loremipsum" },
+	{ "vim-scripts/loremipsum" },
 }

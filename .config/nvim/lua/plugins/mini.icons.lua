@@ -1,7 +1,3 @@
 return {
-  { "echasnovski/mini.icons", style = "gliph" },
+	{ "echasnovski/mini.icons", style = "gliph" },
 }
-
-
-
-
