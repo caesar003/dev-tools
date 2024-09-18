@@ -3,7 +3,7 @@
 # ~/.bin/dotbin/dev-session.sh
 
 # Define the session directory
-SESSION_DIR=~/.config/kitty/sessions
+SESSION_DIR=~/.dev-sessions
 
 # Create the config directory if it doesn't exist
 mkdir -p $SESSION_DIR

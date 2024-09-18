@@ -61,3 +61,10 @@ map("n", "<leader>to", ":TimerShow<CR>", { noremap = true, silent = true, desc =
 map("n", "<leader>te", ":TimerSession ", { noremap = true, desc = "Session" })
 
 map('n', '<leader>I', [[:lua vim.fn.setreg('a', vim.fn.execute('silent! f'))<CR>"ap]], { noremap = true, silent = true, desc = "Print file info" })
+
+-- map('n', '<leader>lls', ":Lazy sync", { noremap = true, desc = "Update plugin" })
+
+-- map('n', '<leader>ls') -- I'm gonna preserve this for snippet
+
+-- map('n', '<leader>lle', ':%s/\\r//g<CR>', { noremap = true, silent = true, desc = "Remove all carriage return characters " })
+

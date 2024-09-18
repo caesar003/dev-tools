@@ -52,6 +52,7 @@ opts.foldcolumn = "1"
 opts.foldlevelstart = 99
 opts.showtabline = 2
 opts.showcmd = true
+
 opts.termguicolors = true
 opts.belloff = "all"
 opts.visualbell = true
@@ -67,6 +68,9 @@ _g.loaded_ruby_provider = 0
 
 opts.tags = "./tags,tags;$HOME"
 _g.disable_bg = 1
+
+
+_g.lazyvim_php_lsp = "intelephense"
 
 
 if fun.has "unnamedplus" == 1 then opts.clipboard = "unnamed,unnamedplus" end
@@ -86,3 +90,4 @@ autocmd("FileType", { pattern = "json", command = "setlocal foldmethod=syntax" }
 autocmd("FileType", { pattern = "sh", command = "setlocal foldmethod=syntax" })
 autocmd("FileType", { pattern = "lua", command = "setlocal foldmethod=indent" })
 
+autocmd({ "BufRead", "BufNewFile" }, { pattern = {".env", ".env.*"}, command = "set filetype=sh" })
