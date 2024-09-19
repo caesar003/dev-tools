@@ -16,6 +16,7 @@ return {
 				}),
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.shfmt,
+				null_ls.builtins.formatting.gofmt,
 			},
 		})
 	end,

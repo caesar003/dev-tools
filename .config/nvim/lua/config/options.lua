@@ -93,7 +93,7 @@ autocmd("FileType", { pattern = "lua", command = "setlocal foldmethod=indent" })
 autocmd({ "BufRead", "BufNewFile" }, { pattern = { ".env", ".env.*" }, command = "set filetype=sh" })
 
 autocmd("BufWritePre", {
-	pattern = { "*.php", "*.blade.php", "*.lua", "*.sh", "*.bash" },
+	pattern = { "*.php", "*.blade.php", "*.lua", "*.sh", "*.bash", "*.go" },
 	callback = function()
 		vim.lsp.buf.format({ async = false })
 	end,

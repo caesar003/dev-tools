@@ -10,7 +10,6 @@ return {
 				"javascript",
 				"bash",
 				"html",
-				"javascript",
 				"json",
 				"lua",
 				"markdown",
