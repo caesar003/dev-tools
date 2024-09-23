@@ -1,4 +1,3 @@
--- if true then return {} end
 return {
 	{
 		"rebelot/heirline.nvim",
@@ -6,25 +5,25 @@ return {
 			local heirline = require("heirline")
 			local utils = require("heirline.utils")
 			local colors = {
-				bright_bg = "#f9fafb", -- Tailwind's `gray-50` for a light background
-				bright_fg = "#374151", -- Tailwind's `gray-700` for a more subdued foreground
-				red = "#ef4444", -- Tailwind's `red-500` for errors
-				dark_red = "#b91c1c", -- Tailwind's `red-800` for a darker red
-				green = "#10b981", -- Tailwind's `green-500` for success or positive
-				blue = "#3b82f6", -- Tailwind's `blue-500` for functions or primary actions
-				gray = "#6b7280", -- Tailwind's `gray-500` for neutral or non-text
-				orange = "#f97316", -- Tailwind's `orange-500` for constants
-				purple = "#8b5cf6", -- Tailwind's `purple-500` for statements
-				cyan = "#06b6d4", -- Tailwind's `cyan-500` for special elements
-				diag_warn = "#f59e0b", -- Tailwind's `yellow-500` for warnings
-				diag_error = "#ef4444", -- Tailwind's `red-500` for errors
-				diag_hint = "#3b82f6", -- Tailwind's `blue-500` for hints
-				diag_info = "#10b981", -- Tailwind's `green-500` for informational messages
-				git_del = "#ef4444", -- Tailwind's `red-500` for deleted lines
-				git_add = "#10b981", -- Tailwind's `green-500` for added lines
-				git_change = "#f97316", -- Tailwind's `orange-500` for changed lines
-				magenta = "#d946ef", -- Tailwind's `pink-500` for magenta
-				light_blue = "#bfdbfe", -- Tailwind's `blue-100` for light blue highlights
+				bright_bg = "#f9fafb",
+				bright_fg = "#374151",
+				red = "#ef4444",
+				dark_red = "#b91c1c",
+				green = "#10b981",
+				blue = "#3b82f6",
+				gray = "#6b7280",
+				orange = "#f97316",
+				purple = "#8b5cf6",
+				cyan = "#06b6d4",
+				diag_warn = "#f59e0b",
+				diag_error = "#ef4444",
+				diag_hint = "#3b82f6",
+				diag_info = "#10b981",
+				git_del = "#ef4444",
+				git_add = "#10b981",
+				git_change = "#f97316",
+				magenta = "#d946ef",
+				light_blue = "#bfdbfe",
 			}
 
 			local FileIcon = {
@@ -150,6 +149,7 @@ return {
 			end, { TablineFileNameBlock, TablinePicker })
 			local Prev = { provider = " ", hl = { fg = "gray" } }
 			local Next = { provider = " ", hl = { fg = "gray" } }
+
 			local get_bufs = function()
 				return vim.tbl_filter(function(bufnr)
 					return vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
@@ -195,5 +195,84 @@ return {
 
 			heirline.setup({ tabline = BufferLine })
 		end,
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		init = function()
+			vim.g.lualine_laststatus = vim.o.laststatus
+			if vim.fn.argc(-1) > 0 then
+				vim.o.statusline = " "
+			else
+				vim.o.laststatus = 0
+			end
+		end,
+
+		opts = {
+			options = {
+				icons_enabled = true,
+				theme = "auto",
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					statusline = {},
+					winbar = {},
+				},
+				ignore_focus = {},
+				always_divide_middle = true,
+				globalstatus = false,
+				refresh = {
+					statusline = 1000,
+					tabline = 1000,
+					winbar = 1000,
+				},
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = { "filename" },
+				lualine_x = {
+
+					function()
+						local ok, pomo = pcall(require, "pomo")
+						if not ok then
+							return ""
+						end
+
+						local timer = pomo.get_first_to_finish()
+						if timer == nil then
+							return ""
+						end
+
+						return "󰄉 " .. tostring(timer)
+					end,
+					"encoding",
+					"fileformat",
+					"filetype",
+				},
+				lualine_y = {
+					"ctime",
+					"cdate",
+					"location",
+				},
+				lualine_z = { "progress" },
+			},
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { "filename" },
+				lualine_x = { "location" },
+				lualine_y = {},
+				lualine_z = {},
+			},
+			tabline = {},
+			winbar = {},
+			inactive_winbar = {},
+			extensions = { "neo-tree" },
+		},
+	},
+	{
+		"archibate/lualine-time",
 	},
 }

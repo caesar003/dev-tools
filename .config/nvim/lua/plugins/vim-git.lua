@@ -43,4 +43,6 @@ return {
 			preview_config = { border = "single", style = "minimal", relative = "cursor", row = 0, col = 1 },
 		},
 	},
+
+	{ "tpope/vim-fugitive" },
 }
