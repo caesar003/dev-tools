@@ -4,8 +4,8 @@
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 
 # Install essential packages
-sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
-	build-essential gettext xclip python3-pip gofmt shfmt stylua fd-find \
+sudo apt install -y git curl tailscale moc gh ripgrep nodejs python3 tmux kitty \
+	build-essential gettext xclip python3-pip shfmt fd-find \
 	snapd lua5.1 xdotool php php-xml php-sqlite3 composer default-jdk \
 	default-jre ninja-build gettext cmake unzip mariadb-server postgresql \
 	postgresql-contrib

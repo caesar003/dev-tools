@@ -20,3 +20,9 @@ chmod +x ./setup.sh
 ```
 
 As the config grows, I feel it's really hard to keep them organized in one place
+
+
+```sh
+
+curl -O -L https://raw.githubusercontent.com/caesar003/dev-tools/main/setup.sh
+```
