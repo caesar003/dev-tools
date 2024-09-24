@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 
 # Install essential packages
-sudo apt install -y git curl tailscale moc gh ripgrep nodejs python3 tmux kitty \
+sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
 	build-essential gettext xclip python3-pip shfmt fd-find \
 	snapd lua5.1 xdotool php php-xml php-sqlite3 composer default-jdk \
 	default-jre ninja-build gettext cmake unzip mariadb-server postgresql \
@@ -15,18 +15,18 @@ mv ~/.bashrc ~/.bashrc_bak
 ln -s ~/.dev-tools/bashrc ~/.bashrc
 
 # Clone personal tools repository
-git clone https://github.com/caesar003/dev-tools
+git clone https://github.com/caesar003/dev-tools ~/.dev-tools
 
 # Create backup and link configuration files and tools
-ln -s ~/.dev-tools/.bin ~/.bin
+ln -s ~/.dev-tools/bin ~/.bin
 
 mv ~/.config/nvim ~/.config/nvim_back
 mv ~/.config/kitty ~/.config/kitty_back
 mv ~/.config/tmux ~/.config/tmux_back
 
-ln -s ~/.dev-tools/.config/nvim ~/.config/nvim
-ln -s ~/.dev-tools/.config/tmux ~/.config/tmux
-ln -s ~/.dev-tools/.config/kitty ~/.config/kitty
+ln -s ~/.dev-tools/config/nvim ~/.config/nvim
+ln -s ~/.dev-tools/config/tmux ~/.config/tmux
+ln -s ~/.dev-tools/config/kitty ~/.config/kitty
 
 # Clone tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -91,7 +91,7 @@ cd
 # Install Chrome browser
 cd
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome*.deb
+sudo dpkg -i google-chrome*.deb && sudo apt --fix-broken install -y
 cd
 
 # Install LazyGit

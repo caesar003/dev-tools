@@ -1,0 +1,11 @@
+# export PATH=$PATH:/home/caesar/.cargo/env
+export PATH=$PATH:/home/caesar/.local/bin
+export PATH=$PATH:/home/caesar/.bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/caesar/.deno/bin
+export PATH=$PATH:/home/caesar/.juliaup/bin
+export PATH=$PATH:/snap/bin
+export GOBIN="/home/caesar/go/bin"
+export PATH=$PATH:/home/caesar/go/bin
+export LUA_PATH="./?.lua;./?/init.lua;/usr/local/share/lua/5.2/?.lua;/usr/local/share/lua/5.2/?/init.lua;/home/caesar/.luarocks/share/lua/5.2/?.lua;/home/caesar/.luarocks/share/lua/5.2/?/init.lua;$LUA_PATH"
+export LUA_CPATH="./?.so;/usr/local/lib/lua/5.2/?.so;/usr/local/share/lua/5.2/?.so;/home/caesar/.luarocks/lib/lua/5.2/?.so;$LUA_CPATH"
