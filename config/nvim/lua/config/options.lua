@@ -102,6 +102,6 @@ autocmd("BufWritePre", {
 autocmd("BufWritePre", {
 	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.json", "*.css", "*.html", "*.json" },
 	callback = function()
-		vim.cmd("Prettier")
+		-- vim.cmd("Prettier")
 	end,
 })

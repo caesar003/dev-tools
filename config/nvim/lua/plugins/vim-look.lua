@@ -210,6 +210,7 @@ return {
 		end,
 
 		opts = {
+			theme = "catppuccin",
 			options = {
 				icons_enabled = true,
 				theme = "auto",
