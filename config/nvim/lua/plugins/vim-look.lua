@@ -253,8 +253,8 @@ return {
 					"filetype",
 				},
 				lualine_y = {
-					"ctime",
-					"cdate",
+					-- "ctime",
+					-- "cdate",
 					"location",
 				},
 				lualine_z = { "progress" },

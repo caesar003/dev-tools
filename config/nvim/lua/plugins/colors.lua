@@ -50,7 +50,6 @@ return {
 
 	{
 		"marko-cerovac/material.nvim",
-		enabled = false,
 		opts = {
 			-- darker
 			-- lighter
@@ -291,7 +290,7 @@ return {
 				functions = {},
 				keywords = {},
 				strings = {},
-				variables = {},
+				variables = { "bold" },
 				numbers = {},
 				booleans = {},
 				properties = {},
