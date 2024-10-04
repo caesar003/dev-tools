@@ -4,15 +4,14 @@ return {
 		opts = {
 			autosave = {
 				enabled = true,
-				interval = 60, -- Interval in seconds for autosaving
-				notify = true, -- Notify when autosave occurs
+				interval = 60,
+				notify = true,
 			},
 		},
 		config = function()
 			local resession = require("resession")
 			resession.setup()
 
-			-- Key mappings for session management
 			vim.keymap.set("n", "<leader>ss", function()
 				local ok, err = pcall(resession.save)
 				if not ok then
@@ -34,10 +33,8 @@ return {
 				end
 			end, { desc = "Delete session" })
 
-			-- Autocommands for session management
 			vim.api.nvim_create_autocmd("VimEnter", {
 				callback = function()
-					-- Load session only if nvim was started with no arguments
 					if vim.fn.argc(-1) == 0 then
 						local ok, err =
 							pcall(resession.load, vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
