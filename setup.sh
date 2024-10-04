@@ -13,6 +13,8 @@ sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
 # Move or create environment configuration files
 mv ~/.bashrc ~/.bashrc_bak
 ln -s ~/.dev-tools/bashrc ~/.bashrc
+ln -s ~/.dev-tools/bashaliases ~/.bashaliases
+ln -s ~/.dev-tools/bashenv ~/.bashenv
 
 # Clone personal tools repository
 git clone https://github.com/caesar003/dev-tools ~/.dev-tools
@@ -27,6 +29,8 @@ mv ~/.config/tmux ~/.config/tmux_back
 ln -s ~/.dev-tools/config/nvim ~/.config/nvim
 ln -s ~/.dev-tools/config/tmux ~/.config/tmux
 ln -s ~/.dev-tools/config/kitty ~/.config/kitty
+
+ln -s ~/.dev-tools/vim ~/.vim
 
 # Clone tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
