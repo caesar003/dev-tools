@@ -111,6 +111,7 @@ fi
 
 . ~/.bashenv
 . ~/.bashaliases
+. ~/.bash_completion
 
 # >>> juliaup initialize >>>
 
