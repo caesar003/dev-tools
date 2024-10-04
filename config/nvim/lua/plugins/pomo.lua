@@ -25,7 +25,7 @@ return {
 					-- With 'nvim-notify', when 'sticky = true' you'll have a live timer pop-up
 					-- continuously displayed. If you only want a pop-up notification when the timer starts
 					-- and finishes, set this to false.
-					sticky = false,
+					sticky = true,
 
 					-- Configure the display icons:
 					title_icon = "󱎫",

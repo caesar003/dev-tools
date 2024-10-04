@@ -71,12 +71,12 @@ let g:ascii = [
 " }}}
 
 let g:startify_custom_header = g:ascii + startify#fortune#boxed()
-let g:startify_bookmarks = [
-      \ {'v': '~/.vim'}, 
-      \ {'y': '~/phb'}, 
-      \ {'x': '~/wms/Container-Frontend'}, 
-      \ {'a' : '~/wms/DataMaster-Frontend'},
-      \ ]
+" let g:startify_bookmarks = [
+"       \ {'v': '~/.vim'}, 
+"       \ {'y': '~/phb'}, 
+"       \ {'x': '~/wms/Container-Frontend'}, 
+"       \ {'a' : '~/wms/DataMaster-Frontend'},
+"       \ ]
 let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_session_persistence = 0
 let g:startify_files_number = 5
@@ -118,7 +118,7 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
-let g:mkdp_images_path = '/home/caesar/.markdown_images'
+" let g:mkdp_images_path = '/home/caesar/.markdown_images'
 let g:mkdp_filetypes = ['markdown']
 let g:mkdp_theme = 'dark'
 let g:mkdp_combine_preview = 0

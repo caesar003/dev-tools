@@ -65,7 +65,7 @@ set tags=./tags,tags;$HOME
 " }}}
 
 " {{{ Colorscheme and Theme Settings
-source $HOME/.vim/init/scripts/theme.vim
+source $HOME/.vim/scripts/theme.vim
 
 highlight Comment cterm=italic
 

@@ -3,3 +3,15 @@ config/tmux/plugins/
 *.txt
 
 
+bin/devs
+bin/iconfg
+bin/itmx
+bin/todo
+bin/toggle-kitty
+bin/toggle-theme
+
+
+vim/autoload/
+vim/plugged/
+vim/sessions/
+vim/swapfiles/

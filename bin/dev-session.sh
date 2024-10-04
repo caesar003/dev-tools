@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ~/.bin/dotbin/dev-session.sh
+# ~/.bin/dev-session.sh
 
 # Define the session directory
 SESSION_DIR=~/.dev-sessions

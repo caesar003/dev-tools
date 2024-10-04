@@ -2,7 +2,7 @@
 call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin' 
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -25,7 +25,6 @@ Plug 'iamcco/markdown-preview.nvim', {  'for': 'markdown', 'do': 'cd app && npx 
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'charlespascoe/vim-go-syntax', { 'for': 'go' }
 
-" Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 Plug 'prettier/vim-prettier', {  
       \ 'do': 'yarn install', 
       \ 'for': [ 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -36,11 +35,10 @@ Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 Plug 'vim-scripts/svg.vim'
 Plug 'vim-scripts/vim-javacomplete2', { 'for': 'java' } 
 Plug 'vim-scripts/loremipsum'
-" Plug 'tpope/vim-vinegar'
 Plug 'bagrat/vim-buffet'
-" https://github.com/preservim/nerdtree.git
-" Plug 'mbbill/VimExplorer'
 Plug 'caesar003/vim-closebuffer'
+Plug 'Reewr/vim-monokai-phoenix'
+Plug 'vim-scripts/BufOnly.vim'
 call plug#end()
 
 " }}}
