@@ -3,23 +3,18 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "VeryLazy",
 		config = function()
-			-- Import the lspconfig module
 			local lspconfig = require("lspconfig")
 
-			-- Function to set keymaps with dynamic options
 			local function set_keymap(bufnr, mode, lhs, rhs, opts)
-				local default_opts = { noremap = true, silent = true } -- Default options
-				opts = vim.tbl_extend("force", default_opts, opts or {}) -- Merge with passed opts
+				local default_opts = { noremap = true, silent = true }
+				opts = vim.tbl_extend("force", default_opts, opts or {})
 				vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
 			end
 
-			-- Setup the TypeScript and JavaScript language server
 			lspconfig.ts_ls.setup({
 				on_attach = function(client, bufnr)
-					-- Disable tsserver's formatting capability if you use a different formatter
 					client.server_capabilities.document_formatting = true
 
-					-- Key mappings for LSP functions
 					set_keymap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
 					set_keymap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 					set_keymap(
@@ -62,7 +57,7 @@ return {
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim", -- Bridges mason with lspconfig
+		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
@@ -71,7 +66,7 @@ return {
 					"lua_ls",
 					"cssls",
 					"bashls",
-				}, -- Automatically install tsserver
+				},
 			})
 		end,
 	},
@@ -111,12 +106,12 @@ return {
 
 			null_ls.setup({
 				sources = {
-					-- PHP formatting using php-cs-fixer
+
 					null_ls.builtins.formatting.phpcsfixer.with({
-						command = "php-cs-fixer", -- Ensure it's in your $PATH
-					}), -- Blade formatting using blade-formatter
+						command = "php-cs-fixer",
+					}),
 					null_ls.builtins.formatting.blade_formatter.with({
-						command = "blade-formatter", -- Ensure it's in your $PATH
+						command = "blade-formatter",
 					}),
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.shfmt,
