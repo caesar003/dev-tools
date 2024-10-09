@@ -1,6 +1,7 @@
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
+
 local opts = vim.opt
 local comm = vim.cmd
 local fun = vim.fn
@@ -103,24 +104,5 @@ autocmd("BufWritePre", {
 	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.json", "*.css", "*.html", "*.json" },
 	callback = function()
 		-- vim.cmd("Prettier")
-	end,
-})
-
--- Automatically remove Windows-style line endings (CRLF) on save
-autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function()
-		-- vim.cmd([[%s/\r//g]])
-	end,
-})
-
--- Set file format to Unix by default
-opts.fileformat = "unix"
-
--- Automatically set the file format to Unix when opening a file
-autocmd("BufReadPost", {
-	pattern = "*",
-	callback = function()
-		-- vim.opt_local.fileformat = "unix"
 	end,
 })

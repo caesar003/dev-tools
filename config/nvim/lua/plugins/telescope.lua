@@ -4,10 +4,6 @@ return {
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			-- cursor
-			-- ivy
-			-- dropdown
-
 			local map = vim.api.nvim_set_keymap
 			map(
 				"n",

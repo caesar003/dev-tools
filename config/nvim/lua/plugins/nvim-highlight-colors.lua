@@ -12,7 +12,7 @@ return {
 			enable_rgb = true,
 			enable_hsl = true,
 			enable_var_usage = true,
-			enable_named_colors = true,
+			enable_named_colors = false,
 			enable_tailwind = true,
 			custom_colors = {
 				{ label = "%-%-theme%-primary%-color", color = "#0f1219" },

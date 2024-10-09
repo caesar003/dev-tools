@@ -3,24 +3,24 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		opts = {
-			flavour = "auto", -- latte, frappe, macchiato, mocha
-			background = { -- :h background
+			flavour = "auto",
+			background = {
 				light = "latte",
 				dark = "mocha",
 			},
-			transparent_background = true, -- disables setting the background color.
-			show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-			term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+			transparent_background = true,
+			show_end_of_buffer = false,
+			term_colors = false,
 			dim_inactive = {
-				enabled = false, -- dims the background color of inactive window
+				enabled = false,
 				shade = "dark",
-				percentage = 0.15, -- percentage of the shade to apply to the inactive window
+				percentage = 0.15,
 			},
-			no_italic = false, -- Force no italic
-			no_bold = false, -- Force no bold
-			no_underline = false, -- Force no underline
-			styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-				comments = { "italic" }, -- Change the style of comments
+			no_italic = false,
+			no_bold = false,
+			no_underline = false,
+			styles = {
+				comments = { "italic" },
 				conditionals = { "italic" },
 				loops = {},
 				functions = {},
@@ -32,7 +32,6 @@ return {
 				properties = {},
 				types = {},
 				operators = {},
-				-- miscs = {}, -- Uncomment to turn off hard-coded styles
 			},
 			color_overrides = {},
 			custom_highlights = {},
@@ -47,8 +46,64 @@ return {
 					enabled = true,
 					indentscope_color = "",
 				},
-				-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 			},
+		},
+	},
+	{
+		"ellisonleao/gruvbox.nvim",
+		opts = {
+			terminal_colors = true, -- add neovim terminal colors
+			undercurl = true,
+			underline = true,
+			bold = true,
+			italic = {
+				strings = true,
+				emphasis = true,
+				comments = true,
+				operators = false,
+				folds = true,
+			},
+			strikethrough = true,
+			invert_selection = false,
+			invert_signs = false,
+			invert_tabline = false,
+			invert_intend_guides = false,
+			inverse = true, -- invert background for search, diffs, statuslines and errors
+			contrast = "", -- can be "hard", "soft" or empty string
+			palette_overrides = {},
+			overrides = {},
+			dim_inactive = false,
+			transparent_mode = true,
+		},
+	},
+	{
+		"justinsgithub/oh-my-monokai.nvim",
+		name = "oh-my-monokai",
+		opts = {
+			transparent_background = true,
+			terminal_colors = true,
+			devicons = true, -- highlight the icons of `nvim-web-devicons`
+			palette = "default", -- or create your own ^^ e.g. justinsgithub
+			inc_search = "background", -- underline | background
+			background_clear = {
+				-- "float_win",
+				"toggleterm",
+				"telescope",
+				"which-key",
+				"renamer",
+				"neo-tree",
+			}, -- "float_win", "toggleterm", "telescope", "which-key", "renamer", "neo-tree"
+			plugins = {
+				bufferline = {
+					underline_selected = false,
+					underline_visible = false,
+				},
+				indent_blankline = {
+					context_start_underline = false,
+				},
+			},
+			---@param c Colorscheme
+			override = function(c) end,
 		},
 	},
 }

@@ -275,6 +275,7 @@ function! ToggleNERDTree()
   endif
 endfunction
 
+
 command! Noh nohlsearch
 command! NOH nohlsearch
 command! Ls ls
@@ -407,14 +408,14 @@ let g:buffet_right_trunc_icon = "\uf0a9"
 
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
+      \ 'Modified'  :'✹',
+      \ 'Staged'    :'✚',
+      \ 'Untracked' :'✭',
+      \ 'Renamed'   :'➜',
+      \ 'Unmerged'  :'═',
+      \ 'Deleted'   :'✖',
+      \ 'Dirty'     :'✗',
+      \ 'Ignored'   :'☒',
+      \ 'Clean'     :'✔︎',
+      \ 'Unknown'   :'?',
+      \ }

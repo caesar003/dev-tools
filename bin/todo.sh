@@ -1,9 +1,20 @@
 #!/bin/bash
 
-TODO_FILE="$HOME/.todo/todo.txt"
+TODO_DIR="$HOME/.todo"
+TODO_FILE="$TODO_DIR/todo.txt"
 
 initialize_todo_file() {
-	touch "$TODO_FILE"
+	# Check if the directory exists, if not, create it
+	if [[ ! -d "$TODO_DIR" ]]; then
+		mkdir -p "$TODO_DIR"
+		echo "Created directory $TODO_DIR"
+	fi
+
+	# Create the todo file if it doesn't exist
+	if [[ ! -f "$TODO_FILE" ]]; then
+		touch "$TODO_FILE"
+		echo "Created todo file $TODO_FILE"
+	fi
 }
 
 list_pending_tasks() {
@@ -61,9 +72,8 @@ usage() {
 	echo "  get <id>       Get details of task with specified id"
 }
 
-if [[ ! -f "$TODO_FILE" ]]; then
-	initialize_todo_file
-fi
+# Initialize todo file and directory
+initialize_todo_file
 
 case "$1" in
 all)
