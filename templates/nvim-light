@@ -1,0 +1,5 @@
+-- ~.dev-tools/templates/nvim-light.txt
+
+-- light theme
+vim.cmd.colorscheme("gruvbox")
+vim.opt.background = "light"

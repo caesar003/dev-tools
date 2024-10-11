@@ -1,2 +1,24 @@
-.config/tmux/plugins/
+config/tmux/plugins/
 # .config/kitty/sessions/
+*.txt
+
+
+bin/devs
+bin/iconfg
+bin/itmx
+bin/todo
+bin/toggle-kitty
+bin/toggle-theme
+bin/totheme
+bin/tokitty
+bin/gitlog
+bin/Pomo-linux-x64/resources/app/node_modules
+
+
+
+vim/autoload/
+vim/plugged/
+vim/sessions/
+vim/swapfiles/
+
+logs/

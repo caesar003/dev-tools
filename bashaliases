@@ -1,0 +1,42 @@
+# Example Zsh Aliases
+
+# Shortcuts for navigation
+alias cdw='cd ~/workspace'
+alias cdb='cd ~/projects'
+alias cdo='cd ~/documents'
+
+# Git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gl='git log --oneline --decorate --all --graph'
+
+# Shortcuts for commonly used commands
+alias ll='ls -lh'
+alias grep='grep --color=auto'
+alias df='df -h'
+alias du='du -h'
+
+
+alias pku='sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y'
+
+# Docker aliases
+alias dps='docker ps'
+alias dlogs='docker logs'
+
+# Miscellaneous
+alias cls='clear'
+alias h='history'
+alias c='clear'
+alias q='exit'
+
+alias gbr='git branch | cat'
+
+# Custom functions
+# Example: Reload Zsh configuration
+reloadzsh() {
+  source ~/.zshrc
+  echo "Zsh configuration reloaded."
+}
+

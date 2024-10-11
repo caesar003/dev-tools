@@ -1,0 +1,114 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
+
+const SESSION_DIR = path.join(process.env.HOME, ".dev-sessions");
+
+// Ensure the session directory exists
+if (!fs.existsSync(SESSION_DIR)) {
+  fs.mkdirSync(SESSION_DIR, { recursive: true });
+}
+
+function saveState(sessionName = "kitty_state") {
+  const stateFile = path.join(SESSION_DIR, `${sessionName}.json`);
+  try {
+    const state = execSync("kitty @ ls").toString();
+    const filteredState = JSON.stringify(
+      JSON.parse(state)[0].tabs.map((tab) => ({
+        title: tab.title,
+        cwd: tab.windows[0].cwd,
+      }))
+    );
+    fs.writeFileSync(stateFile, filteredState);
+    console.log(`Kitty state saved to ${stateFile}`);
+  } catch (error) {
+    console.error("Error saving Kitty state:", error);
+  }
+}
+
+function restoreState(sessionName = "kitty_state") {
+  const stateFile = path.join(SESSION_DIR, `${sessionName}.json`);
+  if (!fs.existsSync(stateFile)) {
+    console.error(`No state file found at ${stateFile}`);
+    process.exit(1);
+  }
+
+  try {
+    const state = JSON.parse(fs.readFileSync(stateFile));
+    state.forEach((tab, index) => {
+      const { title, cwd } = tab;
+      if (index === 0) {
+        execSync(`kitty @ set-tab-title "${title}"`);
+        process.chdir(cwd);
+      } else {
+        execSync(
+          `kitty @ launch --type=tab --tab-title="${title}" --cwd="${cwd}"`
+        );
+      }
+    });
+    console.log(`Kitty state restored from ${stateFile}`);
+  } catch (error) {
+    console.error("Error restoring Kitty state:", error);
+  }
+}
+
+function destroyTabs() {
+  try {
+    const tabs = JSON.parse(execSync("kitty @ ls").toString())[0].tabs.map(
+      (tab) => tab.id
+    );
+    if (tabs.length <= 1) {
+      console.log("There is only one tab open, nothing to destroy.");
+      return;
+    }
+    tabs
+      .slice(1)
+      .forEach((tab) => execSync(`kitty @ close-tab --match id:${tab}`));
+    console.log("All tabs except one have been destroyed.");
+  } catch (error) {
+    console.error("Error destroying tabs:", error);
+  }
+}
+
+function listSessions() {
+  try {
+    const sessions = fs
+      .readdirSync(SESSION_DIR)
+      .filter((file) => file.endsWith(".json"));
+    if (sessions.length === 0) {
+      console.log("No sessions available.");
+    } else {
+      console.log("Available sessions:");
+      sessions.forEach((session) => console.log(session.replace(".json", "")));
+    }
+  } catch (error) {
+    console.error("Error listing sessions:", error);
+  }
+}
+
+// Check the command-line argument and call the appropriate function
+const [command, sessionName] = process.argv.slice(2);
+
+switch (command) {
+  case "save":
+  case "-s":
+    saveState(sessionName);
+    break;
+  case "restore":
+  case "-r":
+    restoreState(sessionName);
+    break;
+  case "destroy":
+  case "-d":
+    destroyTabs();
+    break;
+  case "list":
+  case "-l":
+    listSessions();
+    break;
+  default:
+    console.log("Usage: devs {save|-s|restore|-r|destroy|-d|list|-l}");
+    process.exit(1);
+}

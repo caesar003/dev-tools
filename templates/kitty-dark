@@ -1,0 +1,5 @@
+# ~/.dev-tools/templates/kitty-dark.txt
+
+# Dark theme
+include ./themes/Rosé-pine-kitty-moon.conf
+background_opacity 0.89
