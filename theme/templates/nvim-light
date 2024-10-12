@@ -1,3 +1,0 @@
--- light theme
-vim.cmd.colorscheme("catppuccin")
-vim.opt.background = "light"
