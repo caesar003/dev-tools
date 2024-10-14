@@ -59,6 +59,7 @@ function destroyTabs() {
     const tabs = JSON.parse(execSync("kitty @ ls").toString())[0].tabs.map(
       (tab) => tab.id
     );
+
     if (tabs.length <= 1) {
       console.log("There is only one tab open, nothing to destroy.");
       return;

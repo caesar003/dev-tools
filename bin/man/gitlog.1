@@ -1,0 +1,41 @@
+.TH "GITLOG" "1" "October 2024" "1.0" "Custom Commands"
+.SH NAME
+gitlog \- Generate git logs for multiple repositories
+.SH SYNOPSIS
+\fBgitlog\fR [-a \fIauthor\fR] [-s \fIsince\fR] [-c \fIconfig_file\fR]
+.SH DESCRIPTION
+The \fBgitlog\fR command fetches and saves git logs for multiple repositories. The list of repositories is loaded from a configuration file, and the logs are filtered by author and time frame.
+.SH OPTIONS
+.TP
+\fB-a\fR, \fB--author\fR
+Specify the author whose commits will be logged. If omitted, all authors will be included.
+.TP
+\fB-s\fR, \fB--since\fR
+Specify the date or time period from which to start logging (e.g., "2 weeks ago"). If omitted, the default value from the configuration file will be used.
+.TP
+\fB-c\fR, \fB--config-file\fR
+Path to a custom configuration file containing the list of repositories. The default is \fB$HOME/.logs/git/repos.json\fR.
+.SH CONFIGURATION
+The \fBgitlog\fR script uses a JSON configuration file to store the list of repositories. The default file is located at \fB$HOME/.logs/git/repos.json\fR. If this file does not exist, the script will create a default file.
+.SH EXAMPLES
+.TP
+Run \fBgitlog\fR for a specific author starting from 1 month ago:
+.br
+\fBgitlog -a "John Doe" -s "1 month ago"\fR
+.TP
+Specify a custom configuration file:
+.br
+\fBgitlog -c "/path/to/custom/repos.json"\fR
+.TP
+Use default configuration and list all logs:
+.br
+\fBgitlog\fR
+.SH FILES
+.TP
+\fB~/.logs/git/gitconfig\fR
+Optional configuration file for default values.
+.TP
+\fB~/.logs/git/repos.json\fR
+JSON file containing the list of repositories to log.
+.SH AUTHOR
+Your Name

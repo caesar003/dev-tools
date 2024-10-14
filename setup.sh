@@ -136,6 +136,10 @@ cd
 sudo pip3 install pynvim --break-system-packages
 sudo npm install -g neovim yarn serve live-server neovim tree-sitter tree-sitter-cli
 
+# Copy manual pages
+mkdir -p ~/.local/share/man/man1
+cp ~/.dev-tools/man/* ~/.local/share/man/man1/
+
 # Final cleanup
 rm -f ~/luarocks-3.11.1.tar.gz
 rm -f ~/google-chrome*.deb

@@ -1,11 +1,30 @@
 #!/bin/bash
 
-# Default values
-author="Khaisar Muksid"
-since="2024-09-24"
+# ~/.bin/gitlog.sh
+
+# If you want to you can make executable binary out of it
+# sudo apt-get install shc
+# shc -f gitlog.sh -o gitlog
+# chmod +x gitlog
+#
+# or the simpler way, create symbolic link
+# ln -s gitlog.sh ./gitlog
+# chmod +x gitlog
+
+# Load default values from ~/.logs/git/gitconfig
+config_gitfile="$HOME/.logs/git/gitconfig"
+if [ -f "$config_gitfile" ]; then
+	source "$config_gitfile"
+else
+	echo "Error: Config file not found at $config_gitfile."
+	exit 1
+fi
+
+# Default paths (can still be overridden by flags)
 config_dir="$HOME/.logs/git"
 config_file="$config_dir/repos.json"
 
+# Parse flags for overriding values
 while getopts a:s:c: flag; do
 	case "${flag}" in
 	a) author=${OPTARG} ;;

@@ -1,0 +1,42 @@
+.TH "DEV-SESSION" "1" "October 2024" "1.0" "Custom Commands"
+.SH NAME
+devs \- Save and restore Kitty terminal sessions
+.SH SYNOPSIS
+\fBdevs\fR {save|-s} [session_name]
+.br
+\fBdevs\fR {restore|-r} [session_name]
+.br
+\fBdevs\fR {destroy|-d}
+.br
+\fBdevs\fR {list|-l}
+.SH DESCRIPTION
+The \fBdevs\fR command allows users to save, restore, and manage Kitty terminal sessions. 
+This script saves the state of open tabs and their working directories for future restoration.
+.SH OPTIONS
+.TP
+\fBsave, -s\fR [session_name]
+Save the current Kitty session state to a file.
+.TP
+\fBrestore, -r\fR [session_name]
+Restore a saved Kitty session state.
+.TP
+\fBdestroy, -d\fR
+Destroy all but one of the currently open Kitty tabs.
+.TP
+\fBlist, -l\fR
+List all saved session files.
+.SH EXAMPLES
+.TP
+Save a session:
+\fBdevs save my_session\fR
+.TP
+Restore a session:
+\fBdevs restore my_session\fR
+.TP
+Destroy all but one tab:
+\fBdevs destroy\fR
+.TP
+List all saved sessions:
+\fBdevs list\fR
+.SH AUTHOR
+caesar https://github.com/caesar003
