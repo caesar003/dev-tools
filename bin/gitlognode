@@ -1,0 +1,90 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+const yargs = require('yargs');
+const { hideBin } = require('yargs/helpers');
+
+// Default values
+let author = 'Khaisar Muksid';
+let since = '2024-09-24';
+let configDir = path.join(process.env.HOME, '.logs', 'git');
+let configFile = path.join(configDir, 'repos.json');
+
+// Parse command-line arguments using yargs
+const argv = yargs(hideBin(process.argv))
+  .option('a', {
+    alias: 'author',
+    type: 'string',
+    description: 'Author of the git commits',
+    default: author
+  })
+  .option('s', {
+    alias: 'since',
+    type: 'string',
+    description: 'Start date for git logs',
+    default: since
+  })
+  .option('c', {
+    alias: 'config',
+    type: 'string',
+    description: 'Path to the config file',
+    default: configFile
+  })
+  .argv;
+
+author = argv.author;
+since = argv.since;
+configFile = argv.config;
+
+// Ensure config directory exists
+if (!fs.existsSync(configDir)) {
+  fs.mkdirSync(configDir, { recursive: true });
+}
+
+// Check if config file exists, create if missing
+if (!fs.existsSync(configFile)) {
+  console.log(`Configuration file not found at ${configFile}. Creating a default repos.json...`);
+  const defaultConfig = {
+    repositories: []
+  };
+  fs.writeFileSync(configFile, JSON.stringify(defaultConfig, null, 2));
+  console.log('A new repos.json has been created. Please add your repositories.');
+  process.exit(0);
+}
+
+// Read repositories from the config file
+const config = JSON.parse(fs.readFileSync(configFile));
+const repos = config.repositories;
+
+if (!repos || repos.length === 0) {
+  console.log(`No repositories found in ${configFile}. Please add your repositories and try again.`);
+  process.exit(1);
+}
+
+// Create the log base directory
+const logBaseDir = path.join(process.env.HOME, '.logs', 'git', since, author);
+fs.mkdirSync(logBaseDir, { recursive: true });
+
+// Iterate over the repositories
+repos.forEach(repo => {
+  const projectName = path.basename(repo);
+  const absoluteRepoPath = path.resolve(repo);
+
+  try {
+    process.chdir(absoluteRepoPath); // Change to the repo directory
+    const logDir = path.join(logBaseDir, projectName);
+    fs.mkdirSync(logDir, { recursive: true }); // Ensure log directory exists
+
+    const logFile = path.join(logDir, `${projectName}-${since}.txt`);
+
+    // Run git log and save to logFile
+    const logData = execSync(`git log --author="${author}" --since="${since}"`).toString();
+    fs.writeFileSync(logFile, logData);
+
+    console.log(`Git log for ${projectName} has been saved to: ${logFile}`);
+  } catch (error) {
+    console.error(`Error: Unable to access repository at ${repo}`);
+  }
+});
