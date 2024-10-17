@@ -128,3 +128,4 @@ esac
 
 # <<< juliaup initialize <<<
 . "$HOME/.cargo/env"
+export PATH=$PATH:/sbin

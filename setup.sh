@@ -10,14 +10,14 @@ sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
 	default-jre ninja-build gettext cmake unzip mariadb-server postgresql \
 	postgresql-contrib
 
+# Clone personal tools repository
+git clone https://github.com/caesar003/dev-tools ~/.dev-tools
+
 # Move or create environment configuration files
 mv ~/.bashrc ~/.bashrc_bak
 ln -s ~/.dev-tools/bashrc ~/.bashrc
 ln -s ~/.dev-tools/bashaliases ~/.bashaliases
 ln -s ~/.dev-tools/bashenv ~/.bashenv
-
-# Clone personal tools repository
-git clone https://github.com/caesar003/dev-tools ~/.dev-tools
 
 # Create backup and link configuration files and tools
 ln -s ~/.dev-tools/bin ~/.bin
@@ -48,12 +48,12 @@ sudo apt-get install -y nodejs
 curl https://sh.rustup.rs -sSf | sh
 
 # Install C# and dotnet
-cd
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
-sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-8.0
+#cd
+#wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+#sudo dpkg -i packages-microsoft-prod.deb
+#rm packages-microsoft-prod.deb
+#sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
+#sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-8.0
 
 # Install Go
 cd

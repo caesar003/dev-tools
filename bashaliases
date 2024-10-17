@@ -30,6 +30,7 @@ alias cls='clear'
 alias h='history'
 alias c='clear'
 alias q='exit'
+alias vpnconnect='sudo openconnect --protocol=gp -u nirmala 202.184.247.74  --servercert pin-sha256:KOzv/VyvQkAsxm+dWjShJba8nClIZX7cH8Iyti4DZE4='
 
 alias gbr='git branch | cat'
 
