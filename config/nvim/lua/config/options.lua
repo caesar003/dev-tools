@@ -66,6 +66,7 @@ comm("set t_ZR=^[[23m")
 
 _g.loaded_perl_provider = 0
 _g.loaded_ruby_provider = 0
+_g.python3_host_prog = "/usr/bin/python3"
 
 opts.tags = "./tags,tags;$HOME"
 _g.disable_bg = 1

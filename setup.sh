@@ -1,8 +1,15 @@
 #!/bin/bash
 
 # Update and upgrade system packages
+echo "========================================================="
+echo "Updating system"
+echo "========================================================="
+
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 
+echo "========================================================="
+echo "Installing necessary packages"
+echo "========================================================="
 # Install essential packages
 sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
 	build-essential gettext xclip python3-pip shfmt fd-find \
@@ -11,6 +18,10 @@ sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
 	postgresql-contrib
 
 # Clone personal tools repository
+
+echo "========================================================="
+echo "Cloning personal configuration from github.com/caesar003/dev-tools.git"
+echo "========================================================="
 git clone https://github.com/caesar003/dev-tools ~/.dev-tools
 
 # Move or create environment configuration files
@@ -32,9 +43,15 @@ ln -s ~/.dev-tools/config/kitty ~/.config/kitty
 
 ln -s ~/.dev-tools/vim ~/.vim
 
+echo "========================================================="
+echo "Installing TMUX Plugin Manager"
+echo "========================================================="
 # Clone tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+echo "========================================================="
+echo "Setting git configuration"
+echo "========================================================="
 # Install Git and configure
 git config --global user.name "caesar003"
 git config --global user.email "caesarmuksid@gmail.com"
@@ -50,10 +67,9 @@ curl https://sh.rustup.rs -sSf | sh
 # Install C# and dotnet
 #cd
 #wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-#sudo dpkg -i packages-microsoft-prod.deb
+# sudo dpkg -i packages-microsoft-prod.deb
 #rm packages-microsoft-prod.deb
-#sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
-#sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-8.0
+sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0 aspnetcore-runtime-8.0
 
 # Install Go
 cd
@@ -69,8 +85,17 @@ cd luarocks-3.11.1
 ./configure && make && sudo make install
 cd
 
+echo "========================================================="
+echo "Cloning neovim repo"
+echo "========================================================="
+
 # Clone and build Neovim
 git clone https://github.com/neovim/neovim.git ~/neovim-repo
+
+echo "========================================================="
+echo "Building neovim"
+echo "========================================================="
+
 cd ~/neovim-repo
 git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -78,6 +103,10 @@ cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 cd
 
 # Clone and build Vim
+
+echo "========================================================="
+echo "Cloning vim repo"
+echo "========================================================="
 git clone https://github.com/vim/vim ~/vim-repo
 
 # Install Vim build dependencies
@@ -148,5 +177,6 @@ rm -rf ~/luarocks-3.11.1
 rm -f ~/luarocks*.gz
 rm -f ~/google-chrome*.deb
 rm -f ~/lazygit ~/lazygit*.gz
+rm -rfv ~/neovim-repo
 
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove
