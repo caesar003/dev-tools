@@ -1,0 +1,4 @@
+# VPN Configuration
+export VPN_USER="<your-user-name>"
+export VPN_URL="<your-api-server>"
+export VPN_SERVER_SHA256="<your-api-key>"

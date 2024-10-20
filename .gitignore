@@ -22,3 +22,5 @@ vim/sessions/
 vim/swapfiles/
 
 logs/
+
+.vpnconfig

@@ -1,5 +1,11 @@
 # Example Zsh Aliases
 
+
+ # Source VPN variables
+if [ -f ~/.vpnconfig ]; then
+    source ~/.vpnconfig
+fi
+
 # Shortcuts for navigation
 alias cdw='cd ~/workspace'
 alias cdb='cd ~/projects'
@@ -32,6 +38,9 @@ alias c='clear'
 alias q='exit'
 
 alias gbr='git branch | cat'
+
+
+> alias vpnconnect="sudo openconnect --protocol=gp -u $VPN_USER $VPN_URL --servercert $VPN_SERVER_SHA256"
 
 # Custom functions
 # Example: Reload Zsh configuration

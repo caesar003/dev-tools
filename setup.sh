@@ -1,8 +1,15 @@
 #!/bin/bash
 
 # Update and upgrade system packages
+echo "========================================================="
+echo "Updating system"
+echo "========================================================="
+
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 
+echo "========================================================="
+echo "Installing necessary packages"
+echo "========================================================="
 # Install essential packages
 sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
 	build-essential gettext xclip python3-pip shfmt fd-find \
@@ -10,17 +17,26 @@ sudo apt install -y git curl moc gh ripgrep nodejs python3 tmux kitty \
 	default-jre ninja-build gettext cmake unzip mariadb-server postgresql \
 	postgresql-contrib
 
+# Clone personal tools repository
+
+echo "========================================================="
+echo "Cloning personal configuration from github.com/caesar003/dev-tools.git"
+echo "========================================================="
+git clone https://github.com/caesar003/dev-tools ~/.dev-tools
+
 # Move or create environment configuration files
 mv ~/.bashrc ~/.bashrc_bak
 ln -s ~/.dev-tools/bashrc ~/.bashrc
 ln -s ~/.dev-tools/bashaliases ~/.bashaliases
 ln -s ~/.dev-tools/bashenv ~/.bashenv
 
-# Clone personal tools repository
-git clone https://github.com/caesar003/dev-tools ~/.dev-tools
-
 # Create backup and link configuration files and tools
 ln -s ~/.dev-tools/bin ~/.bin
+
+ln -s ~/.dev-tools/bin/init-tmux.sh ~/.dev-tools/bin/itmx
+ln -s ~/.dev-tools/bin/toggle-kitty.sh ~/.dev-tools/bin/toggle-kitty
+ln -s ~/.dev-tools/bin/toggle-theme.sh ~/.dev-tools/bin/toggle-theme
+ln -s ~/.dev-tools/bin/dev-session.sh ~/.dev-tools/bin/devs
 
 mv ~/.config/nvim ~/.config/nvim_back
 mv ~/.config/kitty ~/.config/kitty_back
@@ -32,28 +48,41 @@ ln -s ~/.dev-tools/config/kitty ~/.config/kitty
 
 ln -s ~/.dev-tools/vim ~/.vim
 
+echo "========================================================="
+echo "Installing TMUX Plugin Manager"
+echo "========================================================="
 # Clone tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+echo "========================================================="
+echo "Setting git configuration"
+echo "========================================================="
 # Install Git and configure
 git config --global user.name "caesar003"
 git config --global user.email "caesarmuksid@gmail.com"
 git config --global core.editor vim
 
+echo "========================================================="
+echo "Installing node js and npm"
+echo "========================================================="
+
 # Install Node.js and global npm packages
 curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+echo "========================================================="
+echo "Installing rust & cargo"
+echo "========================================================="
 
 # Install Rust and Cargo
 curl https://sh.rustup.rs -sSf | sh
 
 # Install C# and dotnet
-cd
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
-sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-8.0
+#cd
+#wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+# sudo dpkg -i packages-microsoft-prod.deb
+#rm packages-microsoft-prod.deb
+sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0 aspnetcore-runtime-8.0
 
 # Install Go
 cd
@@ -69,8 +98,17 @@ cd luarocks-3.11.1
 ./configure && make && sudo make install
 cd
 
+echo "========================================================="
+echo "Cloning neovim repo"
+echo "========================================================="
+
 # Clone and build Neovim
 git clone https://github.com/neovim/neovim.git ~/neovim-repo
+
+echo "========================================================="
+echo "Building neovim"
+echo "========================================================="
+
 cd ~/neovim-repo
 git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -78,6 +116,10 @@ cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 cd
 
 # Clone and build Vim
+
+echo "========================================================="
+echo "Cloning vim repo"
+echo "========================================================="
 git clone https://github.com/vim/vim ~/vim-repo
 
 # Install Vim build dependencies
@@ -92,8 +134,8 @@ cd ~/vim-repo
 	--enable-perlinterp --enable-luainterp \
 	--enable-cscope \
 	--enable-gtk2-check \
-	--with-x
---with-compiledby="caesar003 - github.com/caesar003" \
+	--with-x \
+	--with-compiledby="caesar003 - github.com/caesar003" \
 	--disable-gui \
 	--prefix=$PREFIX
 make VMRUNTIMEDIR=/usr/share/vim/vim9
@@ -123,8 +165,27 @@ cd
 curl -LO https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_0.9.6_amd64.deb
 sudo dpkg -i bottom_0.9.6_amd64.deb
 
+curl -fsSL https://install.julialang.org | sh
+
+echo "========================================================="
+echo "Installing tailscale"
+echo "========================================================="
+
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+sudo apt-get update
+sudo apt-get install tailscale
+
+echo "========================================================="
+echo "Installing remmina"
+echo "========================================================="
+
 # Install Remmina
 sudo snap install remmina
+
+echo "========================================================="
+echo "Get copy of patched nerd font"
+echo "========================================================="
 
 # Install Nerd Fonts
 mkdir -p ~/.local/share/fonts
@@ -134,12 +195,15 @@ cd
 
 # Install additional Python and npm packages
 sudo pip3 install pynvim --break-system-packages
-sudo npm install -g neovim yarn serve live-server neovim tree-sitter tree-sitter-cli
+sudo npm install -g neovim yarn serve live-server typescript neovim tree-sitter tree-sitter-cli
 
 # Copy manual pages
 mkdir -p ~/.local/share/man/man1
 cp ~/.dev-tools/man/* ~/.local/share/man/man1/
 
+echo "========================================================="
+echo "Final cleanup"
+echo "========================================================="
 # Final cleanup
 rm -f ~/luarocks-3.11.1.tar.gz
 rm -f ~/google-chrome*.deb
@@ -147,6 +211,11 @@ rm -f ~/bottom*.deb
 rm -rf ~/luarocks-3.11.1
 rm -f ~/luarocks*.gz
 rm -f ~/google-chrome*.deb
-rm -f ~/lazygit ~/lazygit*.gz
+rm -rf ~/lazygit ~/lazygit*.gz
+rm -rf ~/neovim-repo
 
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove
+
+echo "========================================================="
+echo "Setup completed"
+echo "========================================================="
