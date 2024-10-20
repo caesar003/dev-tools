@@ -35,7 +35,7 @@ restore_state() {
 
 		if [ $tab_number -eq 0 ]; then
 			kitty @ set-tab-title "$numbered_title"
-			cd "$cwd"
+			kitty @ send-text "cd \"$cwd\"\n"
 		else
 			kitty @ launch --type=tab --tab-title="$numbered_title" --cwd="$cwd"
 		fi
