@@ -1,6 +1,6 @@
 config/tmux/plugins/
 # .config/kitty/sessions/
-*.txt
+# *.txt
 
 
 bin/devs
@@ -15,11 +15,15 @@ bin/gitlog
 bin/Pomo-linux-x64/resources/app/node_modules
 
 
+config/gitlog/repositories.json
+config/gitlog/config
+
+
 
 vim/autoload/
 vim/plugged/
 vim/sessions/
-vim/swapfiles/
+vim/swapfiles/*
 
 logs/
 

@@ -130,6 +130,7 @@ set tags=./tags,tags;$HOME
 
 set background=dark 
 colorscheme monokai-phoenix
+" colorscheme ubuntu
 
 highlight Comment cterm=italic
 

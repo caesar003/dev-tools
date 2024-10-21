@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Detect OS
+if grep -q "Ubuntu" /etc/os-release; then
+	OS="ubuntu"
+elif grep -q "Debian" /etc/os-release; then
+	OS="debian"
+else
+	echo "Unsupported operating system"
+	exit 1
+fi
+
+echo "========================================================="
+echo "Detected OS: $OS"
+echo "========================================================="
+
 # Update and upgrade system packages
 echo "========================================================="
 echo "Updating system"
@@ -27,8 +41,9 @@ git clone https://github.com/caesar003/dev-tools ~/.dev-tools
 # Move or create environment configuration files
 mv ~/.bashrc ~/.bashrc_bak
 ln -s ~/.dev-tools/bashrc ~/.bashrc
-ln -s ~/.dev-tools/bashaliases ~/.bashaliases
-ln -s ~/.dev-tools/bashenv ~/.bashenv
+ln -s ~/.dev-tools/bash_aliases ~/.bash_aliases
+ln -s ~/.dev-tools/bash_env ~/.bash_env
+ln -s ~/.dev-tools/bash_completion.d ~/.bash_completion.d
 
 # Create backup and link configuration files and tools
 ln -s ~/.dev-tools/bin ~/.bin
@@ -45,6 +60,11 @@ mv ~/.config/tmux ~/.config/tmux_back
 ln -s ~/.dev-tools/config/nvim ~/.config/nvim
 ln -s ~/.dev-tools/config/tmux ~/.config/tmux
 ln -s ~/.dev-tools/config/kitty ~/.config/kitty
+ln -s ~/.dev-tools/config/gitlog/ ~/.config/gitlog
+
+cp ~/.dev-tools/config/gitlog/config.sample ~/.dev-tools/confing/gitlog/config
+
+cp ~/.dev-tools/config/gitlog/repositories.sample.json ~/.dev-tools/confing/gitlog/repositories.json
 
 ln -s ~/.dev-tools/vim ~/.vim
 
@@ -78,11 +98,18 @@ echo "========================================================="
 curl https://sh.rustup.rs -sSf | sh
 
 # Install C# and dotnet
-#cd
-#wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-# sudo dpkg -i packages-microsoft-prod.deb
-#rm packages-microsoft-prod.deb
-sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0 aspnetcore-runtime-8.0
+
+# Install C# and dotnet depending on the detected OS
+if [ "$OS" = "debian" ]; then
+	echo "Installing .NET for Debian"
+	wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+	sudo dpkg -i packages-microsoft-prod.deb
+	rm packages-microsoft-prod.deb
+	sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0 aspnetcore-runtime-8.0
+elif [ "$OS" = "ubuntu" ]; then
+	echo "Installing .NET for Ubuntu"
+	sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0 aspnetcore-runtime-8.0
+fi
 
 # Install Go
 cd
@@ -177,6 +204,12 @@ sudo apt-get update
 sudo apt-get install tailscale
 
 echo "========================================================="
+echo "Installing openconnect"
+echo "========================================================="
+
+sudo apt install openconnect
+
+echo "========================================================="
 echo "Installing remmina"
 echo "========================================================="
 
@@ -201,6 +234,9 @@ sudo npm install -g neovim yarn serve live-server typescript neovim tree-sitter 
 mkdir -p ~/.local/share/man/man1
 cp ~/.dev-tools/man/* ~/.local/share/man/man1/
 
+# Create log directory
+mkdir -p ~/.logs/git
+
 echo "========================================================="
 echo "Final cleanup"
 echo "========================================================="
@@ -213,6 +249,18 @@ rm -f ~/luarocks*.gz
 rm -f ~/google-chrome*.deb
 rm -rf ~/lazygit ~/lazygit*.gz
 rm -rf ~/neovim-repo
+
+# Check if GNOME is running
+if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || [ "$XDG_SESSION_DESKTOP" = "gnome" ]; then
+	echo "========================================================="
+	echo "Configuring GNOME settings"
+	echo "========================================================="
+
+	# Apply GNOME dash-to-dock setting
+	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+else
+	echo "GNOME desktop environment not detected. Skipping GNOME-specific settings."
+fi
 
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove
 

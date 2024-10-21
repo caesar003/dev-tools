@@ -106,4 +106,7 @@ return {
 			override = function(c) end,
 		},
 	},
+	{
+		"Reewr/vim-monokai-phoenix",
+	},
 }
