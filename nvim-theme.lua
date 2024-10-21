@@ -1,1 +1,0 @@
-config/nvim/lua/config/theme.lua

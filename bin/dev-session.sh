@@ -3,14 +3,18 @@
 # ~/.bin/dev-session.sh
 
 # Define the session directory
-SESSION_DIR=~/.dev-sessions
+SESSION_DIR=~/.config/dev-session/sessions
 
 # Create the config directory if it doesn't exist
 mkdir -p $SESSION_DIR
 
 # Function to save the kitty state
 save_state() {
-	local session_name="${1:-kitty_state}"
+	local session_name="$1"
+	if [ -z "$session_name" ]; then
+		echo "Error: Session name must be provided for saving."
+		exit 1
+	fi
 	local state_file="$SESSION_DIR/${session_name}.txt"
 
 	kitty @ ls | jq '[.[0].tabs[] | {title: .title, cwd: .windows[0].cwd}]' >"$state_file"
@@ -19,7 +23,11 @@ save_state() {
 
 # Function to restore the kitty state
 restore_state() {
-	local session_name="${1:-kitty_state}"
+	local session_name="$1"
+	if [ -z "$session_name" ]; then
+		echo "Error: Session name must be provided for restoring."
+		exit 1
+	fi
 	local state_file="$SESSION_DIR/${session_name}.txt"
 
 	if [ ! -f "$state_file" ]; then
