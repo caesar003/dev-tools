@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# ~/.bin/gitlog.sh
-
-# Create executable binary or use symbolic link (see instructions in previous version)
-
 # Paths and configuration
 config_dir="$HOME/.config/gitlog"
 config_file="$config_dir/config"
@@ -42,8 +38,18 @@ EOL
 	echo "Defaults updated: author='$default_author', since_date='$default_since_date'"
 }
 
+# Function to delete empty files
+delete_empty_files() {
+	find "$1" -type f -name "*.txt" -empty -delete
+}
+
+# Function to delete empty directories (after files are removed)
+delete_empty_directories() {
+	find "$1" -type d -empty -delete
+}
+
 # Parse optional flags for overriding values or setting defaults
-while getopts a:s:c:d flag; do
+while getopts a:s:c:d:flag; do
 	case "${flag}" in
 	a) author=${OPTARG} ;;     # Override author
 	s) since=${OPTARG} ;;      # Override since date
@@ -112,3 +118,9 @@ for repo in $repos; do
 		echo "Error: Unable to access repository at $repo"
 	fi
 done
+
+# Execute the cleanup
+echo "Cleaning up logs in: $log_base_dir"
+delete_empty_files "$log_base_dir"       # Remove empty .txt files
+delete_empty_directories "$log_base_dir" # Remove empty directories
+echo "Cleanup complete!"

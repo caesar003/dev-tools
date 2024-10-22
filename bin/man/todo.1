@@ -1,0 +1,65 @@
+.\" Manpage for todo
+.TH TODO 1 "October 2024"
+.SH NAME
+todo \- A simple command-line todo list manager.
+
+.SH SYNOPSIS
+.B todo
+.I [option] [arguments]
+
+.SH DESCRIPTION
+.B todo
+is a command-line tool for managing a simple todo list. It allows you to add tasks, list pending and completed tasks, mark tasks as done, retrieve task details, and delete tasks.
+
+.SH OPTIONS
+.TP
+.B all
+List all tasks in the todo file.
+
+.TP
+.B pending
+List pending tasks (tasks that are not completed).
+
+.TP
+.B done
+List completed tasks.
+
+.TP
+.B add
+Add a new task. You will be prompted to enter the task title and description.
+
+.TP
+.B delete <id>
+Delete the task with the specified ID.
+
+.TP
+.B finish <id>
+Mark the task with the specified ID as done.
+
+.TP
+.B get <id>
+Retrieve details of the task with the specified ID.
+
+.SH USAGE
+To see the list of options and usage, run:
+.B todo
+
+.SH FILES
+.TP
+.B ~/.todo/todo.txt
+The file where the tasks are stored.
+
+.SH INITIALIZATION
+The script automatically creates the todo directory and file if they do not exist.
+
+.SH EXIT STATUS
+.B 0
+on success.
+.B 1
+if an error occurs (e.g., when a task ID is not found).
+
+.SH AUTHOR
+Written by [Your Name].
+
+.SH SEE ALSO
+.B bash(1)

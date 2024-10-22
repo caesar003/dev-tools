@@ -1,10 +1,10 @@
-.TH "GITLOG" "1" "October 2024" "1.0" "Custom Commands"
+.TH "GITLOG" "1" "October 2024" "1.1" "Custom Commands"
 .SH NAME
-gitlog \- Generate git logs for multiple repositories with optional filters by author and date.
+gitlog \- Generate git logs for multiple repositories with optional filters by author and date, and clean up empty log files.
 .SH SYNOPSIS
 \fBgitlog\fR [-a \fIauthor\fR] [-s \fIsince\fR] [-c \fIconfig_file\fR] [-d]
 .SH DESCRIPTION
-The \fBgitlog\fR command fetches and saves git logs for multiple repositories. The list of repositories is loaded from a configuration file, and the logs are filtered by author and time frame. The user can set default values for the author and date via the \fB-d\fR flag, which are then stored in a configuration file.
+The \fBgitlog\fR command fetches and saves git logs for multiple repositories. The list of repositories is loaded from a configuration file, and the logs are filtered by author and time frame. The user can set default values for the author and date via the \fB-d\fR flag, which are then stored in a configuration file. After generating logs, the script also cleans up any empty log files and directories.
 
 .SH OPTIONS
 .TP
@@ -24,7 +24,7 @@ Run the script in default setup mode to set the default \fIauthor\fR and \fIsinc
 Display help information.
 
 .SH CONFIGURATION
-The \fBgitlog\fR script uses a JSON configuration file to store the list of repositories. By default, this file is located at \fB$HOME/.config/gitlog/repositories.json\fR. The default author and date can be set in a configuration file at \fB$HOME/.config/gitlog/config\fR, which will be created by the script if it does not exist. 
+The \fBgitlog\fR script uses a JSON configuration file to store the list of repositories. By default, this file is located at \fB$HOME/.config/gitlog/repositories.json\fR. The default author and date can be set in a configuration file at \fB$HOME/.config/gitlog/config\fR, which will be created by the script if it does not exist.
 
 The structure of the config file is:
 .RS 4
@@ -52,6 +52,10 @@ Use default configuration and list all logs for the default author and since dat
 Set default author and since date:
 .br
 \fBgitlog -d\fR
+.TP
+Run \fBgitlog\fR and automatically clean up empty log files:
+.br
+\fBgitlog\fR
 
 .SH FILES
 .TP
@@ -62,7 +66,7 @@ Configuration file containing the default values for author and since date.
 JSON file containing the list of repositories to log.
 .TP
 \fB~/.logs/git/\fR
-Directory where the generated git logs are saved. Logs are stored in subdirectories based on the author and since date.
+Directory where the generated git logs are saved. Logs are stored in subdirectories based on the author and since date. Empty log files and directories are also cleaned up automatically.
 
 .SH AUTHOR
 Caesar - https://github.com/caesar003
