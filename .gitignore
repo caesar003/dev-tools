@@ -28,3 +28,4 @@ vim/swapfiles/*
 logs/
 
 .vpnconfig
+config/nvim/lazy-lock.json

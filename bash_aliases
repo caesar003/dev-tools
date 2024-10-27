@@ -1,9 +1,10 @@
 # Example Zsh Aliases
 
  # Source VPN variables
-if [ -f ~/.vpnconfig ]; then
-    source ~/.vpnconfig
-fi
+ if [ -f ~/.vpnconfig ]; then
+   source ~/.vpnconfig
+ fi
+
 
 # Shortcuts for navigation
 alias cdw='cd ~/workspace'
@@ -41,14 +42,13 @@ alias gbr='git branch | cat'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 
@@ -58,6 +58,8 @@ alias l='ls -CF'
 
 
 alias vpnconnect="sudo openconnect --protocol=gp -u $VPN_USER $VPN_URL --servercert $VPN_SERVER_SHA256"
+alias gpconnect="sudo openconnect --protocol=gp -u $VPN_USER $VPN_URL --servercert $VPN_SERVER_SHA256"
+alias tsconnect="sudo tailscale up --authkey $TS_AUTH_KEY --accept-routes=true"
 
 # Custom functions
 # Example: Reload Zsh configuration

@@ -1,0 +1,88 @@
+.\" Manpage for tmux-session
+.TH TMUX-SESSION 1 "October 2024"
+.SH NAME
+tmux-session \- Initialize, set a default, or list tmux session configurations.
+
+.SH SYNOPSIS
+.B tmux-session
+.RI [-i] " <config-name> [session-name]"
+.RI [-d] " <config-name>"
+.RI [-l]
+.br
+Alternatively, use the alias
+.B tssion
+for quicker access.
+
+.SH DESCRIPTION
+.B tmux-session
+is a script for managing tmux sessions based on predefined JSON configuration files. It can initialize a new session, set a default session configuration, or list available configurations.
+
+.SH FLAGS
+.TP
+.B -i
+Initializes a new tmux session using the specified configuration. Requires 
+.IR <config-name> ,
+the name of a JSON configuration file (without the .json extension) located in ~/.config/tmux-session/layouts. 
+Optional
+.I session-name
+can be provided to name the session; otherwise, a default name based on the current timestamp is used.
+
+.TP
+.B -d
+Sets a specified configuration as the default layout. The
+.I <config-name>
+must refer to a valid JSON configuration file in ~/.config/tmux-session/layouts.
+
+.TP
+.B -l
+Lists all available configuration files in ~/.config/tmux-session/layouts.
+
+.SH CONFIGURATION
+The JSON configuration file should define the layout for each tmux window, including optional split configurations. Each configuration is an array of objects, where each object specifies a window title and optional split settings.
+
+Example JSON structure:
+.nf
+[
+    {"title": "editor"},
+    {"title": "server", "window_split": true}
+]
+.fi
+
+.SH USAGE
+To initialize a tmux session with a configuration:
+.B tmux-session -i myconfig
+
+To specify a session name:
+.B tmux-session -i myconfig mysession
+
+To set a configuration as the default:
+.B tmux-session -d myconfig
+
+To list available configurations:
+.B tmux-session -l
+
+For faster access, use the alias:
+.B tssion
+.RI " (created via ln -s ~/.bin/tmux-session.sh ~/.bin/tssion)"
+
+.SH EXIT STATUS
+.B 0
+on success.
+.B 1
+if an invalid argument is provided, or if a required configuration file does not exist.
+
+.SH DEPENDENCIES
+This script requires:
+.RI (1) 
+.B tmux
+for terminal multiplexing.
+.RI (2)
+.B jq
+for parsing JSON configuration files.
+
+.SH AUTHOR
+Written by caesar003 - https://github.com/caesar003.
+
+.SH SEE ALSO
+.B tmux(1),
+.B jq(1)

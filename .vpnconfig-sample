@@ -1,4 +1,6 @@
 # VPN Configuration
-export VPN_USER="<your-user-name>"
-export VPN_URL="<your-api-server>"
-export VPN_SERVER_SHA256="<your-api-key>"
+export GP_USER="<your-user-name>"
+export GP_URL="<your-ip-server>"
+export GP_SERVER_SHA256='<your-sha-cert>'
+
+export TS_AUTH_KEY="<your-authentication-key>"
