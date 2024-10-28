@@ -78,6 +78,29 @@ list_sessions() {
 	ls -1 $SESSION_DIR/*.txt 2>/dev/null | sed 's|^.*/||' | sed 's/\.txt$//'
 }
 
+# Function to view the content of a session file in a presentable format
+view_session() {
+	local session_name="$1"
+	if [ -z "$session_name" ]; then
+		echo "Error: Session name must be provided for viewing."
+		exit 1
+	fi
+
+	local state_file="$SESSION_DIR/${session_name}.txt"
+
+	if [ ! -f "$state_file" ]; then
+		echo "No session file found with the name $session_name."
+		exit 1
+	fi
+
+	echo "Session content for $session_name:"
+	while IFS= read -r line; do
+		title=$(echo "$line" | awk '{print $1}')
+		cwd=$(echo "$line" | awk '{print $2}')
+		echo "Title: $title, CWD: $cwd"
+	done <"$state_file"
+}
+
 # Check the parameter and call the appropriate function
 case "$1" in
 save | -s)
@@ -92,8 +115,11 @@ destroy | -d)
 list | -l)
 	list_sessions
 	;;
+view | -v)
+	view_session "$2"
+	;;
 *)
-	echo "Usage: devs {save|-s|restore|-r|destroy|-d|list|-l}"
+	echo "Usage: devs {save|-s|restore|-r|destroy|-d|list|-l|view|-v}"
 	exit 1
 	;;
 esac

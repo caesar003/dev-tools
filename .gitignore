@@ -2,7 +2,6 @@ config/tmux/plugins/
 # .config/kitty/sessions/
 # *.txt
 
-
 bin/devs
 bin/iconfg
 bin/itmx
@@ -13,6 +12,7 @@ bin/totheme
 bin/tokitty
 bin/gitlog
 bin/Pomo-linux-x64/resources/app/node_modules
+bin/tsion
 
 
 config/gitlog/repositories.json
