@@ -1,7 +1,0 @@
-{
-  "repositories": [
-    "/path/to/your/repo",
-    "/second/path/to/your/repo",
-    "/add/more/repos/as/needed"
-  ]
-}
