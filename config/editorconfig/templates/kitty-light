@@ -1,5 +1,0 @@
-# ~/.dev-tools/templates/kitty-light.txt
-
-# Light theme
-include ./themes/Aquarium-light.conf
-background_opacity 0.99
