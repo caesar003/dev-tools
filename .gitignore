@@ -2,30 +2,8 @@ config/tmux/plugins/
 # .config/kitty/sessions/
 # *.txt
 
-bin/devs
-bin/iconfg
-bin/itmx
+
 bin/todo
-bin/toggle-kitty
-bin/toggle-theme
-bin/totheme
-bin/tokitty
-bin/gitlog
-bin/Pomo-linux-x64/resources/app/node_modules
-bin/tsion
-
-
-config/gitlog/repositories.json
-config/gitlog/config
-
-
-
-vim/autoload/
-vim/plugged/
-vim/sessions/
-vim/swapfiles/*
-
-logs/
 
 .vpnconfig
 config/nvim/lazy-lock.json
