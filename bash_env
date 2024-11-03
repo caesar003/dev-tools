@@ -1,6 +1,5 @@
 # export PATH=$PATH:/home/caesar/.cargo/env
 export PATH=$PATH:/home/caesar/.local/bin
-export PATH=$PATH:/home/caesar/.bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/caesar/.deno/bin
 export PATH=$PATH:/home/caesar/.juliaup/bin

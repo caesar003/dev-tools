@@ -1,1 +1,0 @@
-/home/caesar/.dev-tools/config/nvim/lua/config/theme.lua

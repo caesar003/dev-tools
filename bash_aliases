@@ -57,8 +57,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 
-alias vpnconnect="sudo openconnect --protocol=gp -u $VPN_USER $VPN_URL --servercert $VPN_SERVER_SHA256"
-alias gpconnect="sudo openconnect --protocol=gp -u $VPN_USER $VPN_URL --servercert $VPN_SERVER_SHA256"
+alias gpconnect="sudo openconnect --protocol=gp -u $GP_USER $GP_URL --servercert $GP_SERVER_SHA256"
 alias tsconnect="sudo tailscale up --authkey $TS_AUTH_KEY --accept-routes=true"
 
 # Custom functions

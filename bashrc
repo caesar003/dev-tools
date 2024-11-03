@@ -81,9 +81,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f ~/.bash_completion.d/ksession_completion.sh ]; then
-    . ~/.bash_completion.d/ksession_completion.sh
-fi
+# if [ -f ~/.bash_completion.d/ksession_completion.sh ]; then
+#     . ~/.bash_completion.d/ksession_completion.sh
+# fi
 
 
 . ~/.bash_env
